@@ -1,2 +1,1 @@
-# eshop-terraform-jenkins
-Jenkins CI CD pipeline setup for eShopOnWeb
+# eShopOnWeb terraform-jenkins Pipeline
