@@ -36,21 +36,21 @@ module "lb_target_group" {
 }
 
 module "alb" {
-  source                    = "./load-balancer"
-  lb_name                   = "devops-alb"
-  is_external               = false
-  lb_type                   = "application"
-  sg_enable_ssh_https       = module.security_group.sg_ec2_sg_ssh_http_id
-  subnet_ids                = tolist(module.networking.devops_public_subnets)
-  tag_name                  = "devops-alb"
-  lb_target_group_arn       = module.lb_target_group.devops_lb_target_group_arn
-  ec2_instance_id           = module.jenkins.jenkins_ec2_instance_ip
-  lb_listner_port           = 80
-  lb_listner_protocol       = "HTTP"
-  lb_listner_default_action = "forward"
-  lb_https_listner_port     = 443
-  lb_https_listner_protocol = "HTTPS"
-  devops_acm_arn            = module.aws_ceritification_manager.devops_acm_arn
+  source                          = "./load-balancer"
+  lb_name                         = "devops-alb"
+  is_external                     = false
+  lb_type                         = "application"
+  sg_enable_ssh_https             = module.security_group.sg_ec2_sg_ssh_http_id
+  subnet_ids                      = tolist(module.networking.devops_public_subnets)
+  tag_name                        = "devops-alb"
+  lb_target_group_arn             = module.lb_target_group.devops_lb_target_group_arn
+  ec2_instance_id                 = module.jenkins.jenkins_ec2_instance_ip
+  lb_listner_port                 = 80
+  lb_listner_protocol             = "HTTP"
+  lb_listner_default_action       = "forward"
+  lb_https_listner_port           = 443
+  lb_https_listner_protocol       = "HTTPS"
+  devops_acm_arn                  = module.aws_ceritification_manager.devops_acm_arn
   lb_target_group_attachment_port = 8080
 }
 

@@ -1,1 +1,1 @@
-# eShopOnWeb terraform-jenkins Pipeline
+# Terraform for Jenkins

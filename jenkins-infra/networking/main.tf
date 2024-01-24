@@ -24,7 +24,6 @@ resource "aws_vpc" "devops_vpc_eu_central_1" {
   }
 }
 
-
 # Setup public subnet
 resource "aws_subnet" "devops_public_subnets" {
   count             = length(var.cidr_public_subnet)
@@ -77,7 +76,7 @@ resource "aws_route_table_association" "devops_public_rt_subnet_association" {
 }
 
 # Private Route Table
-resource "aws_route_table" "devops_private_subnets" {
+resource "aws_route_table" "devops_private_route_table" {
   vpc_id = aws_vpc.devops_vpc_eu_central_1.id
   #depends_on = [aws_nat_gateway.nat_gateway]
   tags = {
@@ -89,5 +88,5 @@ resource "aws_route_table" "devops_private_subnets" {
 resource "aws_route_table_association" "devops_private_rt_subnet_association" {
   count          = length(aws_subnet.devops_private_subnets)
   subnet_id      = aws_subnet.devops_private_subnets[count.index].id
-  route_table_id = aws_route_table.devops_private_subnets.id
+  route_table_id = aws_route_table.devops_private_route_table.id
 }
